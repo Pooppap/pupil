@@ -25,7 +25,11 @@ class DefaultNamespace(argparse.Namespace):
 
 
 def parse(running_from_bundle, **defaults):
-    parser = argparse.ArgumentParser(allow_abbrev=False)
+    # add try-catch to argparse for different python version
+    try:
+        parser = argparse.ArgumentParser(allow_abbrev=False)
+    except:
+        parser = argparse.ArgumentParser()
     target_ns = DefaultNamespace(**defaults)
 
     if running_from_bundle:
